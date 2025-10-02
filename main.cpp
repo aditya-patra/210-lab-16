@@ -1,72 +1,81 @@
 /*
 Aditya Patra
-Movie Class Assignment
+Color Class Assignment Part 2
+Lab 16
 
 Purpose:
-Code a Movie class that has the screen writer, the year released, and the title as its private member variables. It has the standard setters and getters for each private member variable. Also code a print() method which prints the object data in a simple format.
+Create a Color class that has as its private member variables three integers representing the RBG values
 
-Your code should read data from an input file, using the data below, which lists data in this order: title, year released, screen writer name.
+Code normal setter & getter member functions. Also code a member print() method to print the object data.
 
-Read this data into a temporary Movie object. Then append that object to your container.
+In main(), create several Color objects, populate them with data, and output their values to the console in neatly-formatted output using the object's print() method.
+
+New Tasks:
+Create a default constructor, a parameter constructor, and at least one partial constructor.
+
+In main(), instantiate a variety of Color objects using a variety of types of constructors.
 */
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
+#include <iomanip>
 using namespace std;
-class Movie {
+
+class Color {
     private:
-        string title;
-        string writer;
-        int year;
+        int red;
+        int green;
+        int blue;
     public:
-        Movie(string Title, string Writer, int Year) {
-            title = Title;
-            writer = Writer;
-            year = Year;
+        Color(int r, int g, int b) {
+            red = r;
+            blue = b;
+            green = g;
         }
-        string getWriter() {
-            return writer;
+        int getRed() {
+            return red;
         }
-        string getTitle() {
-            return title;
+        int getBlue() {
+            return blue;
         }
-        int getYear() {
-            return year;
+        int getGreen() {
+            return green;
         }
-        void setTitle(string val) {
-            title = val;
+        void setRed(int val) {
+            red = val;
         }
-        void setWriter(string val) {
-            writer = val;
+        void setBlue(int val) {
+            blue = val;
         }
-        void setYear(int val) {
-            year = val;
+        void setGreen(int val) {
+            green = val;
         }
         void print() {
-            cout << "Movie Title: " << title << "\n    Year: " << year << "\n    Writer: " << writer << endl;
+            cout << setw(3) << setfill('0') << red << "::";
+            cout << setw(3) << setfill('0') << green << "::";
+            cout << setw(3) << setfill('0') << blue << "\n";
         }
 };
 int main() {
-    ifstream file("file.txt");
-    string line;
-    string tempTitle;
-    string tempWriter;
-    int tempYear;
-    vector<Movie> movies;
-    if(file.good()) {
-        for (int i = 0; i < 4; i++) {
-            getline(file, line);
-            tempTitle = line;
-            getline(file, line);
-            tempYear = stoi(line);
-            getline(file, line);
-            tempWriter = line;
-            Movie temp = Movie(tempTitle, tempWriter, tempYear);
-            movies.push_back(temp);
-        }
-        for(int i= 0; i < 4; i++) {
-            movies[i].print();
-        }
-    }
+    Color color1 = Color(42, 32, 10);
+    Color color2 = Color(251, 126, 97);
+    color2.setBlue(3);
+    color2.setGreen(25);
+    Color color3 = Color(35, 24, 11);
+    Color color4 = Color(63, 72, 99);
+    color2.setRed(3);
+    color2.setBlue(3);
+    Color color5 = Color(45, 76, 90);
+    Color color6 = Color(23, 32, 23);
+    color6.setGreen(color5.getGreen());
+    std::cout << endl << "Color 1: ";
+    color1.print();
+    std::cout << endl << "Color 2: ";
+    color2.print();
+    std::cout << endl << "Color 3: ";
+    color3.print();
+    std::cout << endl << "Color 4: ";
+    color4.print();
+    std::cout << endl << "Color 5: ";
+    color5.print();
+    std::cout << endl << "Color 6: ";
+    color6.print();
 }
