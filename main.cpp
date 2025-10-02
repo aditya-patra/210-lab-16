@@ -30,6 +30,21 @@ class Color {
             blue = b;
             green = g;
         }
+        Color() {
+            red = 0;
+            blue = 0;
+            green = 0;
+        }
+        Color(int r, int g) {
+            red = r;
+            green = g;
+            blue = 0;
+        }
+        Color(int r) {
+            red = r;
+            green = 0;
+            blue = 0;
+        }
         int getRed() {
             return red;
         }
